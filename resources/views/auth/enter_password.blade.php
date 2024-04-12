@@ -16,8 +16,7 @@
             <nav class="relative max-w-7xl w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
                 aria-label="Global">
                 <div class="flex items-center justify-between">
-                    <a class="flex-none text-xl font-semibold" href="#" aria-label="Brand">Goldfinger Wheels
-                        Indonesia</a>
+                    <a class="flex-none text-xl font-semibold" href="#" aria-label="Brand">Goldfinger Wheels Indonesia</a>
                     <div class="sm:hidden">
                         <button type="button"
                             class="hs-collapse-toggle size-9 flex justify-center items-center text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
@@ -40,8 +39,7 @@
                     class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
                     <div
                         class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-                        <a class="font-medium hover:text-slate-600 text-slate-500  sm:py-6" href="/"
-                            aria-current="page">Home</a>
+                        <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/" aria-current="page">Home</a>
 
                         <a class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6"
                             href="#">
@@ -62,15 +60,12 @@
         <div class="relative overflow-hidden flex-1 flex items-center">
             <div class="mx-auto max-w-screen-md py-12 px-4 sm:px-6 md:max-w-screen-xl md:py-20 lg:py-32 md:px-8 flex-1">
                 <div class="md:pe-8 md:w-1/2 xl:pe-0 xl:w-5/12">
-
                     <!-- Title -->
-                    <h1
-                        class="text-3xl text-gray-800 font-bold md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-gray-200">
-                        <span class="text-blue-600 dark:text-blue-500">Buat</span> akun anda
+                    <h1 class="text-3xl text-gray-800 font-bold md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-gray-200">
+                        <span class="text-blue-600">Masuk</span> dengan akun anda
                     </h1>
                     <p class="mt-6 mb-6 text-base text-gray-500">
-                        Bantu kami mengenal anda lebih dengan membuat akun. Isi formulir dibawah dan kembali berselancar
-                        di website kami.
+                        Gunakan alamat email dan password yang anda miliki. Jangan pernah beri tau password anda kepada siapa-siapa termasuk <b>staff</b> kami.
                     </p>
                     <!-- End Title -->
 
@@ -110,46 +105,6 @@
                         <div class="mb-6">
                             <!-- Floating Input -->
                             <div class="relative">
-                                <input type="text" name="name" required id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
-                                focus:pt-6
-                                focus:pb-2
-                                [&:not(:placeholder-shown)]:pt-6
-                                [&:not(:placeholder-shown)]:pb-2
-                                autofill:pt-6
-                                autofill:pb-2" placeholder="you@email.com">
-                                <label for="hs-floating-input-email" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                peer-focus:text-xs
-                                peer-focus:-translate-y-1.5
-                                peer-focus:text-gray-500
-                                peer-[:not(:placeholder-shown)]:text-xs
-                                peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                peer-[:not(:placeholder-shown)]:text-gray-500">Nama Lengkap</label>
-                            </div>
-                            <!-- End Floating Input -->
-                        </div>
-                        <div class="mb-6">
-                            <!-- Floating Input -->
-                            <div class="relative">
-                                <input type="email" name="email" required id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
-                                focus:pt-6
-                                focus:pb-2
-                                [&:not(:placeholder-shown)]:pt-6
-                                [&:not(:placeholder-shown)]:pb-2
-                                autofill:pt-6
-                                autofill:pb-2" placeholder="you@email.com">
-                                <label for="hs-floating-input-email" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                peer-focus:text-xs
-                                peer-focus:-translate-y-1.5
-                                peer-focus:text-gray-500
-                                peer-[:not(:placeholder-shown)]:text-xs
-                                peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                peer-[:not(:placeholder-shown)]:text-gray-500">Alamat Email</label>
-                            </div>
-                            <!-- End Floating Input -->
-                        </div>
-                        <div class="mb-6">
-                            <!-- Floating Input -->
-                            <div class="relative">
                                 <input type="password" name="password" required id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
                                 focus:pt-6
                                 focus:pb-2
@@ -167,41 +122,18 @@
                             </div>
                             <!-- End Floating Input -->
                         </div>
-                        <div class="mb-6">
-                            <!-- Floating Input -->
-                            <div class="relative">
-                                <input type="password" name="confirm" required id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
-                                focus:pt-6
-                                focus:pb-2
-                                [&:not(:placeholder-shown)]:pt-6
-                                [&:not(:placeholder-shown)]:pb-2
-                                autofill:pt-6
-                                autofill:pb-2" placeholder="you@email.com">
-                                <label for="hs-floating-input-email" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                peer-focus:text-xs
-                                peer-focus:-translate-y-1.5
-                                peer-focus:text-gray-500
-                                peer-[:not(:placeholder-shown)]:text-xs
-                                peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                peer-[:not(:placeholder-shown)]:text-gray-500">Konfirmasi Password</label>
-                            </div>
-                            <!-- End Floating Input -->
-                        </div>
 
                         <div class="grid">
                             <button type="submit"
-                                class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Buat
-                                Akun</button>
+                                class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Login</button>
+                        </div>
+                        <div class="grid">
+                            <p class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent  text-black">Bukan akun anda?
+                                <a class="text-blue-600 hover:text-gray-300" href="/login">Kembali!</a>
+                            </p>
                         </div>
                     </form>
                     <!-- End Form -->
-
-                    <div class="grid">
-                        <p class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent  text-black">
-                            Sudah Punya Akun?
-                            <a class="text-blue-600 hover:text-gray-300" href="/login">Login sekarang!</a>
-                        </p>
-                    </div>
                 </div>
             </div>
 

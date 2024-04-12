@@ -65,16 +65,47 @@
                         <span class="text-blue-600">Masuk</span> dengan akun anda
                     </h1>
                     <p class="mt-6 mb-6 text-base text-gray-500">
-                        Gunakan alamat email dan password yang anda miliki. Jangan pernah beri tau password anda kepada siapa-siapa termasuk staff kami.
+                        Gunakan alamat email yang anda miliki. Jangan pernah beri tau password anda kepada siapa-siapa termasuk <b>staff</b> kami.
                     </p>
                     <!-- End Title -->
 
+                    {{-- Alert --}}
+                    @if ($errors->any())
+                        <div class="bg-red-50 border-s-4 border-red-500 p-4 dark:bg-red-800/30 mb-5" role="alert">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <!-- Icon -->
+                                    <span
+                                        class="inline-flex justify-center items-center size-8 rounded-full border-4 border-red-100 bg-red-200 text-red-800 dark:border-red-900 dark:bg-red-800 dark:text-red-400">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 6 6 18"></path>
+                                            <path d="m6 6 12 12"></path>
+                                        </svg>
+                                    </span>
+                                    <!-- End Icon -->
+                                </div>
+                                <div class="ms-3">
+                                    <h3 class="text-gray-800 font-semibold dark:text-white">
+                                        Error!
+                                    </h3>
+                                    <p class="text-sm text-gray-700 dark:text-gray-400">
+                                        {{ $errors->first() }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    {{-- End of Alert --}}
+
                     <!-- Form -->
-                    <form>
+                    <form method="POST">
+                        @csrf
                         <div class="mb-6">
                             <!-- Floating Input -->
                             <div class="relative">
-                                <input type="email" id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
+                                <input type="email" name="email" required id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
                                 focus:pt-6
                                 focus:pb-2
                                 [&:not(:placeholder-shown)]:pt-6
@@ -91,27 +122,6 @@
                             </div>
                             <!-- End Floating Input -->
                         </div>
-                        <div class="mb-6">
-                            <!-- Floating Input -->
-                            <div class="relative">
-                                <input type="password" id="hs-floating-input-email" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600
-                                focus:pt-6
-                                focus:pb-2
-                                [&:not(:placeholder-shown)]:pt-6
-                                [&:not(:placeholder-shown)]:pb-2
-                                autofill:pt-6
-                                autofill:pb-2" placeholder="you@email.com">
-                                <label for="hs-floating-input-email" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                peer-focus:text-xs
-                                peer-focus:-translate-y-1.5
-                                peer-focus:text-gray-500
-                                peer-[:not(:placeholder-shown)]:text-xs
-                                peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                peer-[:not(:placeholder-shown)]:text-gray-500">Password</label>
-                            </div>
-                            <!-- End Floating Input -->
-                        </div>
-
 
                         <div class="grid">
                             <button type="submit"
