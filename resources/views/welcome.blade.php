@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
 
 <body>
-
     {{-- header - start  --}}
-    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full  bg-black">
+    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-black py-3 text sm:py-0">
         <nav class="relative max-w-7xl w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
             aria-label="Global">
             <div class="flex items-center justify-between">
-                <a class="flex-none text-xl font-semibold text-white" href="/" aria-label="Brand">Goldfinger Wheels</a>
+                <a class="flex-none text-xl font-semibold text-white" href="#" aria-label="Brand">Goldfinger Wheels Indonesia</a>
                 <div class="sm:hidden">
                     <button type="button"
                         class="hs-collapse-toggle size-9 flex justify-center items-center text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
@@ -33,14 +33,10 @@
                     </button>
                 </div>
             </div>
-            <div id="navbar-collapse-with-animation"
-                class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
+            <div id="navbar-collapse-with-animation" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
                 <div
                     class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-                    <a class="font-medium  text-white" href="/cart">Cart</a>
-                    {{-- <a class="font-medium  dark:text-gray-400 dark:hover:text-gray-500" href="#">Work</a>
-          <a class="font-medium  dark:text-gray-400 dark:hover:text-gray-500" href="#">Blog</a> --}}
-
+                    <a class="font-medium text-white" href="/product">Produk</a>
 
                     <a class="flex items-center gap-x-2 font-medium text-white hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6"
                         href="/login">

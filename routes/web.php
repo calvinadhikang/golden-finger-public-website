@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -60,3 +61,13 @@ Route::prefix('/register')->group(function() {
 Route::prefix('/product')->group(function() {
     Route::get('/', [BarangController::class, 'viewProducts']);
 });
+
+Route::middleware('user.logged.in')->group(function () {
+    Route::prefix('/profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'view']);
+        Route::post('/', [ProfileController::class, 'update']);
+        Route::post('/npwp', [ProfileController::class, 'updateNPWP']);
+    });
+
+});
+
