@@ -127,18 +127,21 @@
                                 <h3 class="text-xl font-semibold text-gray-800">{{ $item->nama }}</h3>
                             </div>
                             <h3 class="text-l font-semibold text-gray-800 ">Rp. {{ number_format($item->harga) }}</h3>
-                            <button type="button" class="w-full flex items-center justify-center gap-x-2 mt-2 py-3 px-4 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700">
-                                Beli
-                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="m5 11 4-7"></path>
-                                    <path d="m19 11-4-7"></path>
-                                    <path d="M2 11h20"></path>
-                                    <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"></path>
-                                    <path d="m9 11 1 9"></path>
-                                    <path d="M4.5 15.5h15"></path>
-                                    <path d="m15 11-1 9"></path>
-                                    </svg>
-                            </button>
+                            <form action="{{ url("/cart/add/$item->part") }}" method="POST">
+                                @csrf
+                                <button name="type" value="barang" class="w-full flex items-center justify-center gap-x-2 mt-2 py-3 px-4 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+                                    Beli
+                                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m5 11 4-7"></path>
+                                        <path d="m19 11-4-7"></path>
+                                        <path d="M2 11h20"></path>
+                                        <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"></path>
+                                        <path d="m9 11 1 9"></path>
+                                        <path d="M4.5 15.5h15"></path>
+                                        <path d="m15 11-1 9"></path>
+                                        </svg>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <!-- End Card -->

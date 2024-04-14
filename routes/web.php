@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -24,10 +25,6 @@ Route::get('/', function () {
 Route::get('/product-details', function () {
     return view('product-details');
 });
-
-Route::get('/cart', function () {
-    return view('cart');
-})->middleware('user.logged.in');
 
 Route::get('/logout', function () {
     Session::flush();
@@ -69,5 +66,11 @@ Route::middleware('user.logged.in')->group(function () {
         Route::post('/npwp', [ProfileController::class, 'updateNPWP']);
     });
 
+    Route::prefix('/cart')->group(function () {
+        Route::get('/', [CartController::class, 'view']);
+        Route::post('/add/{id}', [CartController::class, 'addToCart']);
+        Route::post('/modify/{id}', [CartController::class, 'modifyCart']);
+        Route::post('/remove/{id}', [CartController::class, 'removeCart']);
+    });
 });
 
