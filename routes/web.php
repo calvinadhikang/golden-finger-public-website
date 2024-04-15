@@ -5,6 +5,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VulkanisirServiceController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -21,6 +23,10 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test/mail', function() {
+    Mail::to('calvinadhikang@gmail.com')->send(new TestMail());
 });
 
 Route::get('/product-details', function () {
@@ -79,4 +85,6 @@ Route::middleware('user.logged.in')->group(function () {
         Route::get('/detail/{id}', [VulkanisirServiceController::class, 'viewDetail']);
     });
 });
+
+
 
