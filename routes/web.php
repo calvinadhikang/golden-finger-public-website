@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VulkanisirServiceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -71,6 +72,11 @@ Route::middleware('user.logged.in')->group(function () {
         Route::post('/add/{id}', [CartController::class, 'addToCart']);
         Route::post('/modify/{id}', [CartController::class, 'modifyCart']);
         Route::post('/remove/{id}', [CartController::class, 'removeCart']);
+    });
+
+    Route::prefix('/vservice')->group(function() {
+        Route::get('/', [VulkanisirServiceController::class, 'view']);
+        Route::get('/detail/{id}', [VulkanisirServiceController::class, 'viewDetail']);
     });
 });
 

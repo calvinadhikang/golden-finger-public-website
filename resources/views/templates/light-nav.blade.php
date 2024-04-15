@@ -49,6 +49,8 @@
                         aria-current="page">Produk</a>
                     <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/cart"
                         aria-current="page">Keranjang</a>
+                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/vservice"
+                        aria-current="page">Service Vulkanisir</a>
                     @endif
 
                     <a class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6"
