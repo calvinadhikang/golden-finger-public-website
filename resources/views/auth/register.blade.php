@@ -16,7 +16,7 @@
             <nav class="relative max-w-7xl w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
                 aria-label="Global">
                 <div class="flex items-center justify-between">
-                    <a class="flex-none text-xl font-semibold" href="#" aria-label="Brand">Goldfinger Wheels
+                    <a class="flex-none text-xl font-semibold" href="/" aria-label="Brand">Goldfinger Wheels
                         Indonesia</a>
                     <div class="sm:hidden">
                         <button type="button"

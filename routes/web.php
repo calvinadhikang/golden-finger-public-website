@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VulkanisirServiceController;
 use App\Mail\TestMail;
@@ -71,6 +72,7 @@ Route::middleware('user.logged.in')->group(function () {
         Route::get('/', [ProfileController::class, 'view']);
         Route::post('/', [ProfileController::class, 'update']);
         Route::post('/npwp', [ProfileController::class, 'updateNPWP']);
+        Route::post('/password', [ProfileController::class, 'updatePassword']);
     });
 
     Route::prefix('/cart')->group(function () {
@@ -78,6 +80,12 @@ Route::middleware('user.logged.in')->group(function () {
         Route::post('/add/{id}', [CartController::class, 'addToCart']);
         Route::post('/modify/{id}', [CartController::class, 'modifyCart']);
         Route::post('/remove/{id}', [CartController::class, 'removeCart']);
+    });
+
+    Route::prefix('/invoice')->group(function () {
+        Route::get('/', [InvoiceController::class, 'view']);
+        Route::get('/detail/{id}', [InvoiceController::class, 'viewDetail']);
+        Route::post('/detail/{id}/payment', [InvoiceController::class, 'viewDetailPayment']);
     });
 
     Route::prefix('/vservice')->group(function() {

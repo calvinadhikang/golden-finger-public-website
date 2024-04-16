@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
@@ -51,5 +52,35 @@ class ProfileController extends Controller
             'title' => 'Update Berhasil',
             'msg' => 'Berhasil update NPWP!'
         ]);
+    }
+
+    public function updatePassword(Request $request){
+        $old = $request->input('old');
+        $new = $request->input('new');
+        $user = Session::get('user');
+
+        if (Hash::check($old, $user->password)) {
+
+            if (strlen($new) < 8) {
+                return back()->withErrors([
+                    'msg' => 'Password baru minimal 8 karakter!'
+                ]);
+            }
+
+            $target = Customer::find($user->id);
+            $target->password = Hash::make($new);
+            $target->save();
+
+            Session::put('user', $target);
+
+            return back()->with([
+                'title' => "Ubah Password Berhasil!",
+                'msg' => 'Berhasil mengubah password!'
+            ]);
+        }else{
+            return back()->withErrors([
+                'msg' => 'Password lama salah!'
+            ]);
+        }
     }
 }

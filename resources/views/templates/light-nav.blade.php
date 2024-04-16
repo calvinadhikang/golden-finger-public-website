@@ -49,6 +49,8 @@
                         aria-current="page">Produk</a>
                     <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/cart"
                         aria-current="page">Keranjang</a>
+                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/invoice"
+                        aria-current="page">Invoice</a>
                     <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/vservice"
                         aria-current="page">Service Vulkanisir</a>
                     @endif
@@ -78,29 +80,56 @@
             <div class="flex">
                 <div class="flex-shrink-0">
                     <!-- Icon -->
-                    <span
-                    class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
-                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                    <span class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
+                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-                                <path d="m9 12 2 2 4-4"></path>
-                            </svg>
-                        </span>
+                            <path d="m9 12 2 2 4-4"></path>
+                        </svg>
+                    </span>
                         <!-- End Icon -->
-                    </div>
-                    <div class="ms-3">
-                        <h3 class="text-gray-800 font-semibold dark:text-white">
+                </div>
+                <div class="ms-3">
+                    <h3 class="text-gray-800 font-semibold dark:text-white">
                             {{ session('title') }}
-                        </h3>
-                        <p class="text-sm text-gray-700 dark:text-gray-400">
+                    </h3>
+                    <p class="text-sm text-gray-700 dark:text-gray-400">
                             {{ session('msg') }}
-                        </p>
-                    </div>
+                    </p>
                 </div>
             </div>
+        </div>
         @endif
         {{-- Alert End --}}
+
+        {{-- Alert Error --}}
+        @if ($errors->any())
+        <div class="bg-red-50 border-s-4 border-red-500 p-4 dark:bg-red-800/30 mb-5" role="alert">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <!-- Icon -->
+                    <span
+                        class="inline-flex justify-center items-center size-8 rounded-full border-4 border-red-100 bg-red-200 text-red-800 dark:border-red-900 dark:bg-red-800 dark:text-red-400">
+                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </span>
+                    <!-- End Icon -->
+                </div>
+                <div class="ms-3">
+                    <h3 class="text-gray-800 font-semibold dark:text-white">
+                        Error!
+                    </h3>
+                    <p class="text-sm text-gray-700 dark:text-gray-400">
+                        {{ $errors->first() }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
+        {{-- End of Alert Error --}}
 
         @yield('content')
     </main>

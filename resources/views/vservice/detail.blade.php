@@ -16,6 +16,16 @@
     </li>
 </ol>
 <div class="mt-10">
+    @if ($service_status != 'On Progress')
+    <div class="p-2 rounded-lg border mb-10 text-center font-medium">
+        @if ($service_status == 'Canceled')
+            <p class="text-red-500">Servis kamu dibatalkan karena : {{ $service->cancel_reason }}</p>
+        @elseif ($service_status == 'Pickup')
+            <p>Service Vulkanisir Kamu sudah selesai, harap ambil dan lunasi pembayaran di toko ya!</p>
+        @endif
+    </div>
+    @endif
+
     <div class="flex w-full">
         <div class="flex-grow">
             <p class="text-lg">Nama Teknisi : <span class="font-medium">{{ $service->teknisi->nama }}</span></p>
@@ -39,10 +49,7 @@
                 <p class="">Biaya Service :</p>
                 <p class="text-right font-medium">Rp {{ number_format($service->harga) }}</p>
             </div>
-
         </div>
     </div>
-
-
 </div>
 @endsection

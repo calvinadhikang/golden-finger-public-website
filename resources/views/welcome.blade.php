@@ -38,14 +38,28 @@
                     class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
                     <a class="font-medium text-white" href="/product">Produk</a>
 
-                    <a class="flex items-center gap-x-2 font-medium text-white hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6"
-                        href="/login">
+                    {{-- Hanya tampilkan ketika user sudah login --}}
+                    @if (session()->has('user'))
+                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/product"
+                        aria-current="page">Produk</a>
+                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/cart"
+                        aria-current="page">Keranjang</a>
+                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/vservice"
+                        aria-current="page">Service Vulkanisir</a>
+                    @endif
+
+                    <a class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6"
+                        href="@if (session()->has('user')) /profile @else /login @endif">
                         <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             fill="currentColor" viewBox="0 0 16 16">
                             <path
                                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                         </svg>
+                        @if (session()->has('user'))
+                        Profil
+                        @else
                         Log in
+                        @endif
                     </a>
                 </div>
             </div>
@@ -74,7 +88,7 @@
 
             <!-- Buttons -->
             <div class="text-center">
-                <a class="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800" href={{ url('product') }}>Cari Katalog
+                <a class="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800" href={{ url('product') }}>Lihat Produk
                     <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="m9 18 6-6-6-6" /></svg>
                 </a>
@@ -91,7 +105,7 @@
     <!-- End Hero -->
 
     <div class="bg-black">
-        <!-- Clients -->
+        {{-- <!-- Clients -->
         <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
             <!-- Title -->
             <div class="w-2/3 sm:w-1/2 lg:w-1/3 mx-auto text-center mb-6">
@@ -228,7 +242,7 @@
             <!-- End Grid -->
 
         </div>
-        <!-- End Clients -->
+        <!-- End Clients --> --}}
     </div>
 
     {{-- card - start  --}}
