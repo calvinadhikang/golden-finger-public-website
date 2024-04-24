@@ -3,7 +3,7 @@
 @section('content')
 {{-- side bar - start  --}}
 <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10">
-    <h1 class="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900">Produk Kami</h1>
     <div class="flex items-center">
         <button type="button" class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden">
             <span class="sr-only">Filters</span>
@@ -25,23 +25,23 @@
             <ul role="list"
                 class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                 <li>
-                    <a href="#">Totes</a>
+                    <a href="#">Ban Luar</a>
                 </li>
                 <li>
-                    <a href="#">Backpacks</a>
+                    <a href="#">Ban Dalam</a>
                 </li>
                 <li>
-                    <a href="#">Travel Bags</a>
+                    <a href="#">Bridgestone</a>
                 </li>
                 <li>
-                    <a href="#">Hip Bags</a>
+                    <a href="#">Longmarch</a>
                 </li>
                 <li>
-                    <a href="#">Laptop Sleeves</a>
+                    <a href="#">Everwin</a>
                 </li>
             </ul>
 
-            <div class="border-b border-gray-200 py-6">
+            {{-- <div class="border-b border-gray-200 py-6">
                 <h3 class="-my-3 flow-root">
                     <!-- Expand/collapse section button -->
                     <button type="button"
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  --}}
         </form>
 
         <!-- Product grid -->
@@ -121,12 +121,10 @@
                         <div class="h-52 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
                             <img src="https://drive.google.com/thumbnail?id=1hkHYvobBdZb5R9k_48zL3FWc2SEEnyIF" class="w-full h-full object-cover">
                         </div>
-                        <div class="p-4 md:p-6">
-                            <span class="block mb-1 text-xs font-semibold uppercase text-blue-600">{{ $item->part }}</span>
-                            <div class="truncate">
-                                <h3 class="text-xl font-semibold text-gray-800">{{ $item->nama }}</h3>
-                            </div>
-                            <h3 class="text-l font-semibold text-gray-800 ">Rp. {{ number_format($item->harga) }}</h3>
+                        <div class="p-4 md:p-6 flex flex-col grow">
+                            <div class="block mb-1 text-xs font-semibold uppercase text-blue-600 whitespace-normal">{{ $item->part }}</div>
+                            <h3 class="text-xl font-semibold text-gray-800">{{ $item->nama }}</h3>
+                            <div class="text-l font-semibold text-gray-800 grow">Rp. {{ number_format($item->harga) }}</div>
                             <form action="{{ url("/cart/add/$item->part") }}" method="POST">
                                 @csrf
                                 <button name="type" value="barang" class="w-full flex items-center justify-center gap-x-2 mt-2 py-3 px-4 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700">
