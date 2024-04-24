@@ -36,15 +36,13 @@
             <div id="navbar-collapse-with-animation" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
                 <div
                     class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-                    <a class="font-medium text-white" href="/product">Produk</a>
+                    <a class="font-medium text-gray-500 hover:text-gray-100" href="/product">Produk</a>
 
                     {{-- Hanya tampilkan ketika user sudah login --}}
                     @if (session()->has('user'))
-                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/product"
-                        aria-current="page">Produk</a>
-                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/cart"
+                    <a class="font-medium text-gray-500 hover:text-gray-100 sm:py-6" href="/cart"
                         aria-current="page">Keranjang</a>
-                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/vservice"
+                    <a class="font-medium text-gray-500 hover:text-gray-100 sm:py-6" href="/vservice"
                         aria-current="page">Service Vulkanisir</a>
                     @endif
 
