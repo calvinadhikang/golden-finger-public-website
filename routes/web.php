@@ -80,6 +80,7 @@ Route::middleware('user.logged.in')->group(function () {
         Route::post('/add/{id}', [CartController::class, 'addToCart']);
         Route::post('/modify/{id}', [CartController::class, 'modifyCart']);
         Route::post('/remove/{id}', [CartController::class, 'removeCart']);
+        Route::post('/checkout', [CartController::class, 'checkoutCart']);
     });
 
     Route::prefix('/invoice')->group(function () {

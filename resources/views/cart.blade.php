@@ -55,9 +55,9 @@
             </li>
             <li class="flex flex-wrap gap-4 text-md py-3 font-bold">Total <span class="ml-auto">Rp {{ number_format($grand_total) }}</span></li>
         </ul>
-        <form action="{{ url('/checkout') }}" method="POST">
+        <form action="{{ url('/cart/checkout') }}" method="POST">
             @csrf
-            <button type="button" class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Checkout</button>
+            <button type="submit" class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Checkout</button>
         </form>
     </div>
 </div>

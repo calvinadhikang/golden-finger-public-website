@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Cart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -91,5 +92,72 @@ class CartController extends Controller
             'title' => 'Berhasil Hapus Keranjang!',
             'msg' => 'Barang / Paket berhasil dihapus dari keranjang!'
         ]));
+    }
+
+    public function checkoutCart(){
+        $user = Session::get('user');
+
+        $total = 0;
+        $ppn = DB::table('settings')->select('ppn')->first()->ppn;
+        $cart = Cart::where('customer_id', $user->id)->get();
+
+        foreach ($cart as $key => $value) {
+            $total += $value->subtotal;
+        }
+        $ppn_value = $total + ($total / 100 * $ppn);
+        $grand_total = $total + $ppn_value;
+
+        DB::beginTransaction();
+        try {
+            $kode = Util::generateInvoiceCode();
+            $suratJalan = Util::generateSuratJalanCodeFromInvoiceCode($kode);
+
+            $currentDateTime = Carbon::now();
+            //insert header
+            $lastId = DB::table('hinvoice')->insertGetId([
+                'customer_id' => $user->id,
+                'karyawan_id' => 1,
+                'kode' => $kode,
+                'surat_jalan' => $suratJalan,
+                'total' => $total,
+                'contact_person' => '-',
+                'komisi' => 0,
+                'ppn' => $ppn,
+                'ppn_value' => $ppn_value,
+                'grand_total' => $grand_total,
+                'po' => '-',
+                'jatuh_tempo' => Carbon::now()->addDays(7),
+                'created_at' => Carbon::now(),
+                'status'=> 0,
+            ]);
+
+            foreach ($cart as $key => $value) {
+                $barang = Barang::where('part', $value->part)->first();
+
+                DB::table('dinvoice')->insert([
+                    'hinvoice_id' => $lastId,
+                    'part' => $value->part,
+                    'nama' => $barang->nama,
+                    'harga' => $barang->harga,
+                    'qty' => $value->qty,
+                    'subtotal' => $value->subtotal,
+                    'type' => 'barang',
+                    'created_at' => $currentDateTime
+                ]);
+            }
+
+            DB::table('cart')->where('customer_id', $user->id)->delete();
+
+            DB::commit();
+            return redirect('/invoice')->with([
+                'title' => 'Berhasil checkout!',
+                'msg' => 'Berhasil checkout pesanan dari cart!'
+            ]);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return back()->withErrors([
+                'msg' => $ex->getMessage()
+            ]);
+        }
     }
 }
