@@ -15,7 +15,7 @@ class InvoiceController extends Controller
         $data = HeaderInvoice::latest()->where('customer_id', $user->id)->get();
 
         foreach ($data as $key => $value) {
-            $createdAt = Carbon::parse($value->created_at);
+            $createdAt = Carbon::parse($value->jatuh_tempo);
             if ($createdAt->lte($now)) {
                 $value->payment_status_text = 'Lewat Jatuh Tempo';
             }else{

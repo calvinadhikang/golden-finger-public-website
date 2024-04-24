@@ -12,6 +12,7 @@
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Kode</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Total Biaya</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pelunasan</th>
+                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pesanan</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jatuh Tempo</th>
                             <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
@@ -28,8 +29,17 @@
                                     <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">Lunas</span>
                                 @endif
                             </td>
+                            <td>
+                                @if ($item->status == 0)
+                                Menunggu Konfirmasi
+                                @elseif ($item->status == 1)
+                                Menunggu Pembayaran
+                                @elseif ($item->status == 2)
+                                Processed
+                                @endif
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {{ date_format($item->created_at, 'd M Y') }}
+                                {{ date_format(new DateTime($item->jatuh_tempo), 'd M Y') }}
                                 @if ($item->payment_status_text != null && $item->paid_at == null)
                                     <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">Lewat Jatuh Tempo</span>
                                 @endif
