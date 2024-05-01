@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\Session;
 class BarangController extends Controller
 {
     //
-    public function viewProducts(){
-        $products = Barang::latest()->where('public', '=', 1)->get();
+    public function viewProducts(Request $request){
+        $search = $request->query('search', '');
+        $products = Barang::latest()
+            ->where('public', '=', 1)
+            ->where('part', 'like', "%$search%")
+            ->orWhere('nama', 'like', "%$search%")->get();
         return view('product', [
-            'products' => $products
+            'products' => $products,
+            'search' => $search
         ]);
     }
 }
