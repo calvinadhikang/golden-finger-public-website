@@ -15,12 +15,7 @@ class InvoiceController extends Controller
         $data = HeaderInvoice::latest()->where('customer_id', $user->id)->get();
 
         foreach ($data as $key => $value) {
-            $createdAt = Carbon::parse($value->jatuh_tempo);
-            if ($createdAt->lte($now)) {
-                $value->payment_status_text = 'Lewat Jatuh Tempo';
-            }else{
-                $value->payment_status_text = null;
-            }
+            $value->status_text = Util::getInvoiceStatusText($value->status);
         }
 
         return view('invoice.invoice', [
@@ -30,16 +25,40 @@ class InvoiceController extends Controller
 
     public function viewDetail($id){
         $invoice = HeaderInvoice::find($id);
+
+        if (!$invoice) {
+            return redirect('/invoice')->withErrors([
+                'msg' => 'Invoice tidak ditemukan!'
+            ]);
+        }
+
         $now = Carbon::now();
-        $createdAt = Carbon::parse($invoice->created_at);
-        if ($createdAt->lte($now)) {
+        $jatuhTempo = Carbon::parse($invoice->jatuh_tempo);
+        if ($jatuhTempo->lte($now)) {
             $invoice->payment_status_text = 'Lewat Jatuh Tempo';
         }else{
             $invoice->payment_status_text = null;
         }
 
+        $statusTransaksi = "";
+        $statusBackground = "";
+        if ($invoice->status == 0) {
+            $statusTransaksi = "Menunggu Konfirmasi";
+            $statusBackground = "bg-gray-200";
+        }elseif($invoice->status == 1){
+            $statusTransaksi = "Menunggu Pembayaran";
+            $statusBackground = "bg-green-200";
+        }elseif($invoice->status == 2){
+            $statusTransaksi = "Dikirim";
+        }elseif($invoice->status == -1){
+            $statusTransaksi = "Dibatalkan";
+            $statusBackground = "bg-red-200 text-red-500";
+        }
+
         return view('invoice.detail', [
-            'invoice' => $invoice
+            'invoice' => $invoice,
+            'statusTransaksi' => $statusTransaksi,
+            'statusBackground' => $statusBackground
         ]);
     }
 

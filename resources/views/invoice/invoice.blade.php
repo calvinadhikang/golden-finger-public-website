@@ -11,32 +11,24 @@
                         <tr>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Kode</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Total Biaya</th>
-                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pelunasan</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pesanan</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jatuh Tempo</th>
                             <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
+                        @if (count($data) == 0)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800" colspan="5">Tidak ada data</td>
+                        </tr>
+                        @endif
+
                         @foreach ($data as $item)
                         <tr class="hover:bg-gray-100">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{ $item->kode }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rp {{ number_format($item->grand_total) }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                @if ($item->paid_at == null)
-                                    <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">Menunggu Pembayaran</span>
-                                @else
-                                    <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">Lunas</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if ($item->status == 0)
-                                Menunggu Konfirmasi
-                                @elseif ($item->status == 1)
-                                Menunggu Pembayaran
-                                @elseif ($item->status == 2)
-                                Processed
-                                @endif
+                            <td class="px-6 py-4">
+                                {{ $item->status_text }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                 {{ date_format(new DateTime($item->jatuh_tempo), 'd M Y') }}
@@ -46,7 +38,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                 <a href="{{ url("/invoice/detail/$item->id") }}">
-                                    <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none">Detail</button>
+                                    <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-500 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none">Detail</button>
                                 </a>
                             </td>
                         </tr>

@@ -104,7 +104,7 @@ class CartController extends Controller
         foreach ($cart as $key => $value) {
             $total += $value->subtotal;
         }
-        $ppn_value = $total + ($total / 100 * $ppn);
+        $ppn_value = $total / 100 * $ppn;
         $grand_total = $total + $ppn_value;
 
         DB::beginTransaction();
@@ -116,7 +116,6 @@ class CartController extends Controller
             //insert header
             $lastId = DB::table('hinvoice')->insertGetId([
                 'customer_id' => $user->id,
-                'karyawan_id' => 1,
                 'kode' => $kode,
                 'surat_jalan' => $suratJalan,
                 'total' => $total,
@@ -126,7 +125,7 @@ class CartController extends Controller
                 'ppn_value' => $ppn_value,
                 'grand_total' => $grand_total,
                 'po' => '-',
-                'jatuh_tempo' => Carbon::now()->addDays(7),
+                'jatuh_tempo' => Carbon::now()->addDays(1),
                 'created_at' => Carbon::now(),
                 'status'=> 0,
             ]);
@@ -149,7 +148,7 @@ class CartController extends Controller
             DB::table('cart')->where('customer_id', $user->id)->delete();
 
             DB::commit();
-            return redirect('/invoice')->with([
+            return redirect('/invoice/detail/'.$lastId)->with([
                 'title' => 'Berhasil checkout!',
                 'msg' => 'Berhasil checkout pesanan dari cart!'
             ]);

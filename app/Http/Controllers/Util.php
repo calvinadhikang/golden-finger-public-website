@@ -81,4 +81,19 @@ class Util extends Controller
 
         return $obj;
     }
+
+    static function getInvoiceStatusText($status){
+        if ($status == 0) {
+            return "Menunggu Konfirmasi";
+        }
+        else if ($status == 1) {
+            return "Pembayaran Diterima";
+        }
+        else if ($status == -1){
+            return "Dibatalkan";
+        }
+        else {
+            return "";
+        }
+    }
 }
