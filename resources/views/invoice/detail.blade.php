@@ -71,7 +71,7 @@
                 <form action="{{ url("/invoice/detail/$invoice->id/payment") }}" method="POST">
                     @csrf
                     <button
-                        class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Checkout</button>
+                        class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Bayar</button>
                 </form>
             @endif
 
