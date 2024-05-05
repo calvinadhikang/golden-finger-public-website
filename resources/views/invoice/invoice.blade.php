@@ -28,7 +28,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{ $item->kode }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rp {{ number_format($item->grand_total) }}</td>
                             <td class="px-6 py-4">
-                                {{ $item->status_text }}
+                                <div class="{{ $item->status_text['background'] }}">{{ $item->status_text['text'] }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                 {{ date_format(new DateTime($item->jatuh_tempo), 'd M Y') }}

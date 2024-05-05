@@ -40,36 +40,27 @@ class InvoiceController extends Controller
             $invoice->payment_status_text = null;
         }
 
-        $statusTransaksi = "";
-        $statusBackground = "";
-        if ($invoice->status == 0) {
-            $statusTransaksi = "Menunggu Konfirmasi";
-            $statusBackground = "bg-gray-200";
-        }elseif($invoice->status == 1){
-            $statusTransaksi = "Menunggu Pembayaran";
-            $statusBackground = "bg-green-200";
-        }elseif($invoice->status == 2){
-            $statusTransaksi = "Dikirim";
-        }elseif($invoice->status == -1){
-            $statusTransaksi = "Dibatalkan";
-            $statusBackground = "bg-red-200 text-red-500";
-        }
+        $status = Util::getInvoiceStatusText($invoice->status);
 
         return view('invoice.detail', [
             'invoice' => $invoice,
-            'statusTransaksi' => $statusTransaksi,
-            'statusBackground' => $statusBackground
+            'status' => $status,
         ]);
     }
 
-    public function viewDetailPayment($id){
+    public function paymentSuccess(Request $request){
+        $id = $request->input('invoice_id');
+        if (!$id) {
+            return redirect('/invoice')->withErrors([
+                'msg' => 'Invoice tidak ditemukan!'
+            ]);
+        }
+
         $invoice = HeaderInvoice::find($id);
         $invoice->paid_at = Carbon::now();
+        $invoice->status = 2;
         $invoice->save();
 
-        return back()->with([
-            'title' => 'Pembayaran berhasil!',
-            'msg' => "Berhasil menyelesaikan pembayaran Invoice $invoice->kode"
-        ]);
+        return true;
     }
 }

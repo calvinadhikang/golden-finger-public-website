@@ -86,7 +86,7 @@ Route::middleware('user.logged.in')->group(function () {
     Route::prefix('/invoice')->group(function () {
         Route::get('/', [InvoiceController::class, 'view']);
         Route::get('/detail/{id}', [InvoiceController::class, 'viewDetail']);
-        Route::post('/detail/{id}/payment', [InvoiceController::class, 'viewDetailPayment']);
+        Route::post('/payment', [InvoiceController::class, 'paymentSuccess'])->name('invoice.payment');
     });
 
     Route::prefix('/vservice')->group(function() {

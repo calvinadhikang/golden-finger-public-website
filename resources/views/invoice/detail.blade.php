@@ -44,14 +44,22 @@
             <h3 class="text-2xl font-bold text-[#333]">Ringkasan Transaksi</h3>
             <div class="flex items-center justify-between">
                 <p class="py-2 text-lg font-medium">Status Transaksi</p>
-                <div class="px-3 py-2 {{ $statusBackground }} rounded-xl text-xs font-medium">{{ $statusTransaksi }}</div>
+                <div class="{{ $status['background'] }}">{{ $status['text'] }}</div>
             </div>
             @if ($invoice->status == -1)
                 <div class="">
                     <h1 class="font-medium">Alasan Pembatalan :</h1>
-                    <div class="px-2 py-2 my-2 block w-full border-red-200 bg-red-100 border rounded text-sm">
+                    <div class="px-2 py-2 my-3 block w-full border-red-200 bg-red-100 border rounded-lg text-sm">
                         {{ $invoice->cancel_reason }}
-                    </textarea>
+                    </div>
+                </div>
+            @elseif ($invoice->status == 2)
+                <div class="">
+                    <div class="px-2 py-2 my-3 block w-full border-green-200 bg-green-100 border rounded-lg text-sm" >
+                        Transaksi sudah lunas, hubungi admin di untuk informasi pesanan.
+                        <br><br>
+                        Nomor Admin: 082157118887/08125309669
+                    </div>
                 </div>
             @endif
             <div class="border-b-2"></div>
@@ -68,31 +76,34 @@
             </ul>
 
             @if ($invoice->status == 1)
-                <form action="{{ url("/invoice/detail/$invoice->id/payment") }}" method="POST">
-                    @csrf
-                    <button
-                        class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Bayar</button>
-                </form>
-            @endif
-
-            @if ($invoice->paid_at == null)
-                @if ($invoice->payment_status_text != null)
-                    <div class="flex justify-center mt-2">
-                        <span
-                            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">Lewat
-                            Jatuh Tempo</span>
-                    </div>
-                @endif
-            @else
-                <button type="button"
-                    class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">
-                    Sudah Lunas
-                </button>
-                <p class="mt-2 text-center text-sm">
-                    Lunas Tanggal :
-                    <span class="font-medium">{{ date_format(new DateTime($invoice->paid_at), 'm D Y') }}</span>
-                </p>
+                <button id="pay-button" class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Bayar</button>
             @endif
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script type="text/javascript">
+        $('#pay-button').click(function (e) {
+            e.preventDefault();
+
+            snap.pay('{{ $invoice->snap_token }}', {
+                onSuccess: function (result) {
+                    $.post("{{ route('invoice.payment') }}", {
+                        _token: "{{ csrf_token() }}",
+                        invoice_id: "{{ $invoice->id }}",
+                    }, function (data) {
+                        location.reload();
+                    });
+                },
+                onPending: function (result) {
+                    location.reload();
+                },
+                onError: function (result) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
 @endsection

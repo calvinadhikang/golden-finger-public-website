@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        \Midtrans\Config::$serverKey    = config('services.midtrans.serverKey');
+        \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
+        \Midtrans\Config::$isSanitized  = config('services.midtrans.isSanitized');
+        \Midtrans\Config::$is3ds        = config('services.midtrans.is3ds');
+    }
+
     public function view(){
         $user = Session::get('user');
         $carts = Cart::where('customer_id', $user->id)->get();
@@ -113,6 +121,33 @@ class CartController extends Controller
             $suratJalan = Util::generateSuratJalanCodeFromInvoiceCode($kode);
 
             $currentDateTime = Carbon::now();
+
+            // Midtrans
+            $midtrans_items = [];
+            foreach ($cart as $key => $value) {
+                $barang = Barang::where('part', $value->part)->first();
+                $midtrans_items[] = [
+                    'id' => $barang->part,
+                    'price'=> $barang->harga,
+                    'quantity'=> $value->qty,
+                    'name'=> $barang->nama,
+                    'merchant_name'=> 'PT. Goldfinger Wheels Indonesia',
+                ];
+            }
+            $payload = [
+                'transaction_details' => [
+                    'order_id' => $kode,
+                    'gross_amount' => $grand_total,
+                ],
+                'customer_details' => [
+                    'first_name' => $user->nama,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                ],
+                'item_details' => $midtrans_items
+            ];
+            $snapToken = \Midtrans\Snap::getSnapToken($payload);
+
             //insert header
             $lastId = DB::table('hinvoice')->insertGetId([
                 'customer_id' => $user->id,
@@ -128,6 +163,7 @@ class CartController extends Controller
                 'jatuh_tempo' => Carbon::now()->addDays(1),
                 'created_at' => Carbon::now(),
                 'status'=> 0,
+                'snap_token' => $snapToken
             ]);
 
             foreach ($cart as $key => $value) {

@@ -83,17 +83,32 @@ class Util extends Controller
     }
 
     static function getInvoiceStatusText($status){
+        $background = "px-3 py-2 rounded-xl text-xs font-medium flex items-center justify-center w-fit ";
+        $text = "";
         if ($status == 0) {
-            return "Menunggu Konfirmasi";
+            $background = $background."bg-gray-200";
+            $text = "Menunggu Konfirmasi";
         }
         else if ($status == 1) {
-            return "Pembayaran Diterima";
+            $background = $background."bg-yellow-200";
+            $text = "Menunggu Pembayaran";
+        }
+        else if ($status == 2){
+            $background = $background."bg-green-200";
+            $text = "Lunas";
         }
         else if ($status == -1){
-            return "Dibatalkan";
+            $background = $background."bg-red-200 text-red-500";
+            $text = "Dibatalkan";
         }
         else {
-            return "";
+            $background = $background."bg-red-200 text-red-500";
+            $text = "Error Hubungi Admin";
         }
+
+        return [
+            'text' => $text,
+            'background' => $background
+        ];
     }
 }
