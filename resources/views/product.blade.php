@@ -77,6 +77,7 @@
                             <div class="block mb-1 text-xs font-semibold uppercase text-blue-600 whitespace-normal">{{ $item->part }}</div>
                             <div class="text-xl font-semibold text-gray-800 grow">{{ $item->nama }}</div>
                             <div class="text-l font-semibold text-gray-800 py-2">Rp. {{ number_format($item->harga) }}</div>
+
                             <form action="{{ url("/cart/add/$item->part") }}" method="POST">
                                 @csrf
                                 <button name="type" value="barang" class="w-full flex items-center justify-center gap-x-2 mt-2 py-3 px-4 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700">
@@ -92,6 +93,9 @@
                                     </svg>
                                 </button>
                             </form>
+                            <a href="{{ url("/product/detail/$item->part") }}">
+                                <button class="w-full flex items-center justify-center gap-x-2 mt-2 py-3 px-4 border rounded-lg text-sm font-medium hover:bg-blue-100">Lihat Detail</button>
+                            </a>
                         </div>
                     </div>
                     <!-- End Card -->

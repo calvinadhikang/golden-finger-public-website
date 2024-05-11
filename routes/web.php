@@ -64,7 +64,8 @@ Route::prefix('/register')->group(function() {
 });
 
 Route::prefix('/product')->group(function() {
-    Route::get('/', [BarangController::class, 'viewProducts']);
+    Route::get('/', [BarangController::class, 'view']);
+    Route::get('/detail/{part}', [BarangController::class, 'viewDetail']);
 });
 
 Route::middleware('user.logged.in')->group(function () {

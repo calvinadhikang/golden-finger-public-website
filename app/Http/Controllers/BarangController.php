@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class BarangController extends Controller
 {
     //
-    public function viewProducts(Request $request){
+    public function view(Request $request){
         $search = $request->query('search', '');
         $products = Barang::latest()
             ->where('public', '=', 1)
@@ -19,6 +19,21 @@ class BarangController extends Controller
         return view('product', [
             'products' => $products,
             'search' => $search
+        ]);
+    }
+
+    public function viewDetail($part){
+        if ($part == null) {
+            return back();
+        }
+
+        $product = Barang::where("part", $part)->where("public", 1)->first();
+        if ($product == null) {
+            return back();
+        }
+
+        return view('product-details', [
+            'product' => $product
         ]);
     }
 }
