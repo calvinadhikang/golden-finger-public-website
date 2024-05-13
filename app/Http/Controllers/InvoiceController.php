@@ -58,6 +58,9 @@ class InvoiceController extends Controller
 
         $invoice = HeaderInvoice::find($id);
         $invoice->paid_at = Carbon::now();
+        $invoice->paid_method = 'midtrans';
+        $invoice->paid_code = $invoice->snap_token;
+        $invoice->paid_by = Session::get('user')->id;
         $invoice->status = 2;
         $invoice->save();
 

@@ -13,9 +13,11 @@ class BarangController extends Controller
     public function view(Request $request){
         $search = $request->query('search', '');
         $products = Barang::latest()
-            ->where('public', '=', 1)
-            ->where('part', 'like', "%$search%")
-            ->orWhere('nama', 'like', "%$search%")->get();
+            ->where('public', 1)
+            ->where(function($query) use ($search) {
+                $query->where('nama', 'like', "%$search%")
+                    ->orWhere('part', 'like', "%$search%");
+            })->get();
         return view('product', [
             'products' => $products,
             'search' => $search

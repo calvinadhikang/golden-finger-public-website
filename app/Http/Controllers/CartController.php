@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -136,7 +137,7 @@ class CartController extends Controller
             }
             $payload = [
                 'transaction_details' => [
-                    'order_id' => $kode,
+                    'order_id' => Str::uuid(),
                     'gross_amount' => $grand_total,
                 ],
                 'customer_details' => [
