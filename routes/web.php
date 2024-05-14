@@ -96,5 +96,7 @@ Route::middleware('user.logged.in')->group(function () {
     });
 });
 
-
+Route::get('/error', function() {
+    abort(404);
+});
 
