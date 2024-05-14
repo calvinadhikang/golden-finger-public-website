@@ -82,6 +82,13 @@ Route::middleware('user.logged.in')->group(function () {
         Route::post('/modify/{id}', [CartController::class, 'modifyCart']);
         Route::post('/remove/{id}', [CartController::class, 'removeCart']);
         Route::post('/checkout', [CartController::class, 'checkoutCart']);
+        Route::get('/penawaran', [CartController::class, 'createPenawaran']);
+    });
+
+    Route::prefix('/penawaran')->group(function () {
+        Route::get('/', [CartController::class, 'viewPenawaran']);
+        Route::post('/modify/', [CartController::class, 'modifyPenawaran']);
+        Route::post('/remove/{id}', [CartController::class, 'removePenawaranItem']);
     });
 
     Route::prefix('/invoice')->group(function () {

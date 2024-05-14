@@ -46,6 +46,10 @@
                 <p class="py-2 text-lg font-medium">Status Transaksi</p>
                 <div class="{{ $status['background'] }}">{{ $status['text'] }}</div>
             </div>
+            <div class="my-3 flex items-center justify-between">
+                <p class="text-lg font-medium">Tanggal Pembelian</p>
+                <p>{{ date_format($invoice->created_at, 'd M Y') }}</p>
+            </div>
             @if ($invoice->status == -1)
                 <div class="">
                     <h1 class="font-medium">Alasan Pembatalan :</h1>
@@ -75,8 +79,14 @@
                         {{ number_format($invoice->grand_total) }}</span></li>
             </ul>
 
-            @if ($invoice->status == 1)
-                <button id="pay-button" class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Bayar</button>
+            @if ($invoice->snap_token == null)
+                <div class="text-wrap break-words border rounded p-4 bg-slate-50">Karena pemesanan dilakukan di toko. Silahkan lakukan pembayaran dengan menghubungi admin.
+                    <p class="mt-2">Nomor Admin: 082157118887/08125309669</p>
+                </div>
+            @else
+                @if ($invoice->status == 1)
+                    <button id="pay-button" class="mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded">Bayar</button>
+                @endif
             @endif
         </div>
     </div>
