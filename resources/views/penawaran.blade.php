@@ -54,7 +54,7 @@
     </div>
     <div class="">
         <div class="bg-gray-100 p-8 rounded-lg">
-            <h3 class="text-2xl font-bold text-[#333]">Order summary</h3>
+            <h3 class="text-2xl font-bold text-[#333]">Ringkasan Penawaran</h3>
             <ul class="text-[#333] mt-6 divide-y">
                 <li class="flex flex-wrap gap-4 text-md py-3">Subtotal <span class="ml-auto font-bold">Rp {{ number_format($total) }}</span></li>
                 <li class="flex flex-wrap gap-4 text-md py-3">PPN {{ $ppn }}% <span class="ml-auto font-bold">Rp {{ number_format($total_ppn) }}</span>
@@ -63,6 +63,10 @@
             </ul>
             <form action="{{ url('/penawaran/make') }}" method="POST">
                 @csrf
+                <input type="hidden" name="total" value="{{ $total }}">
+                <input type="hidden" name="ppn" value="{{ $ppn }}">
+                <input type="hidden" name="total_ppn" value="{{ $total_ppn }}">
+                <input type="hidden" name="grand_total" value="{{ $grand_total }}">
                 <button type="submit" class="mt-6 text-md px-6 py-2.5 w-full bg-yellow-300 hover:bg-yellow-500 rounded">Buat Penawaran</button>
             </form>
         </div>

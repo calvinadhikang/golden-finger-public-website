@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PenawaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VulkanisirServiceController;
 use App\Mail\TestMail;
@@ -82,13 +83,17 @@ Route::middleware('user.logged.in')->group(function () {
         Route::post('/modify/{id}', [CartController::class, 'modifyCart']);
         Route::post('/remove/{id}', [CartController::class, 'removeCart']);
         Route::post('/checkout', [CartController::class, 'checkoutCart']);
-        Route::get('/penawaran', [CartController::class, 'createPenawaran']);
+        Route::get('/penawaran', [PenawaranController::class, 'createPenawaran']);
     });
 
     Route::prefix('/penawaran')->group(function () {
-        Route::get('/', [CartController::class, 'viewPenawaran']);
-        Route::post('/modify/', [CartController::class, 'modifyPenawaran']);
-        Route::post('/remove/{id}', [CartController::class, 'removePenawaranItem']);
+        Route::get('/', [PenawaranController::class, 'viewPenawaran']);
+        Route::post('/modify/', [PenawaranController::class, 'modifyPenawaran']);
+        Route::post('/remove/{id}', [PenawaranController::class, 'removePenawaranItem']);
+        Route::post('/make', [PenawaranController::class, 'makePenawaran']);
+
+        Route::get('/view', [PenawaranController::class, 'viewPenawaranList']);
+        Route::get('/detail/{id}', [PenawaranController::class, 'viewPenawaranDetail']);
     });
 
     Route::prefix('/invoice')->group(function () {

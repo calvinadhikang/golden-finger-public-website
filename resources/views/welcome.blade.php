@@ -42,6 +42,8 @@
                     @if (session()->has('user'))
                     <a class="font-medium text-gray-500 hover:text-gray-100 sm:py-6" href="/cart"
                         aria-current="page">Keranjang</a>
+                    <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/penawaran/view"
+                        aria-current="page">Penawaran</a>
                     <a class="font-medium text-gray-500 hover:text-gray-600 sm:py-6" href="/invoice"
                         aria-current="page">Invoice</a>
                     <a class="font-medium text-gray-500 hover:text-gray-100 sm:py-6" href="/vservice"

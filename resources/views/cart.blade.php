@@ -55,7 +55,10 @@
             </form>
         </div>
         <div class="mt-5 flex items-center flex-wrap gap-x-2">
-            <p>Ingin mengajukan penawaran ? <a href="{{ url('/cart/penawaran') }}" class="hover:underline font-medium">Klik Disini.</a></p>
+            @if (@session('penawaran'))
+            <a href="{{ url('/penawaran') }}" class="text-center font-medium bg-yellow-300 px-3 py-2 w-full rounded hover:bg-yellow-400 mb-2">Lihat Penawaran</a>
+            @endif
+            <p>Ingin mengajukan penawaran @if (@session('penawaran')) baru @endif ? <a href="{{ url('/cart/penawaran') }}" class="hover:underline font-medium">Klik Disini.</a></p>
         </div>
     </div>
 </div>
