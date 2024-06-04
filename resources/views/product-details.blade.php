@@ -37,6 +37,7 @@
         <div class="mt-8 space-y-4">
             <form action="{{ url("/cart/add/$product->part") }}" method="POST">
                 @csrf
+                <p class="text-gray-800">Stok tersisa {{ $product->stok }} SET</p>
                 <button name="type" value="barang" class="w-full flex items-center justify-center gap-x-2 mt-2 py-3 px-4 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700">
                     Beli
                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

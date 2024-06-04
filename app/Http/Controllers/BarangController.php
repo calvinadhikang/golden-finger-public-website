@@ -14,6 +14,7 @@ class BarangController extends Controller
         $search = $request->query('search', '');
         $products = Barang::latest()
             ->where('public', 1)
+            ->where('stok', '>', 0)
             ->where(function($query) use ($search) {
                 $query->where('nama', 'like', "%$search%")
                     ->orWhere('part', 'like', "%$search%");

@@ -73,6 +73,7 @@ class CartController extends Controller
     public function modifyCart($id, Request $request){
         $modify = $request->input('modify');
         $cart = Cart::find($id);
+        $barang = Barang::where('part', $cart->part)->first();
 
         if($cart->type == 'barang'){
             $harga = Barang::where('part', $cart->part)->first()->harga;
@@ -80,6 +81,14 @@ class CartController extends Controller
 
         $cart->qty = $cart->qty + $modify;
         $cart->subtotal = $harga * $cart->qty;
+
+        // Cek stok
+        if ($cart->qty > $barang->stok) {
+            return back()->withErrors([
+                'msg' => 'Stok barang tidak mencukupi!'
+            ]);
+        }
+
         if ($cart->qty <= 0) {
             $cart->forceDelete();
             return back()->with(([

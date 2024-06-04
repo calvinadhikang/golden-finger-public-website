@@ -87,10 +87,17 @@ class PenawaranController extends Controller
         }
 
         if($target != null){
+            $barang = Barang::where('part', $part)->first();
+
+            if ($request->input('qty') > $barang->stok ) {
+                return back()->withErrors([
+                    'msg' => 'Stok barang tidak mencukupi!'
+                ]);
+            }
+
             $target->qty = $request->input('qty');
             $target->subtotal = $request->input('harga') * $request->input('qty');
         }
-
 
         Session::put('penawaran', $data);
         return back()->with(([
