@@ -122,7 +122,7 @@
                 </div>
                 <div class="ms-3">
                     <h3 class="text-gray-800 font-semibold dark:text-white">
-                        Error!
+                        {{ $errors->has('title') ? $errors->first('title') : "Error" }}
                     </h3>
                     <p class="text-sm text-gray-700 dark:text-gray-400">
                         {{ $errors->first() }}

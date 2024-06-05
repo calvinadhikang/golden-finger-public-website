@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\HeaderInvoice;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -83,6 +85,22 @@ class AuthController extends Controller
 
                 Session::flush();
                 Session::put('user', $target);
+
+                // count user unpaid_invoice
+                $seminggu = Carbon::now()->addDays(7);
+                $hasUnpaid = HeaderInvoice::where('customer_id', $target->id)
+                    ->whereNull('paid_at')
+                    ->whereNotNull('confirmed_by')
+                    ->where('jatuh_tempo', '<=', $seminggu)
+                    ->count();
+
+                if ($hasUnpaid) {
+                    return redirect('/invoice')->withErrors([
+                        'msg' => 'Anda memiliki tagihan yang belum dibayar!',
+                        'title' => 'Tagihan Belum Dibayar!',
+                    ]);
+                }
+
                 return redirect('/');
             }
         }
@@ -96,6 +114,22 @@ class AuthController extends Controller
         if (Hash::check($password, $target->password)) {
             Session::flush();
             Session::put('user', $target);
+
+            // count user unpaid_invoice
+            $seminggu = Carbon::now()->addDays(7);
+            $hasUnpaid = HeaderInvoice::where('customer_id', $target->id)
+                ->whereNull('paid_at')
+                ->whereNotNull('confirmed_by')
+                ->where('jatuh_tempo', '<=', $seminggu)
+                ->count();
+
+            if ($hasUnpaid) {
+                return redirect('/invoice')->withErrors([
+                    'msg' => 'Anda memiliki tagihan yang belum dibayar!',
+                    'title' => 'Tagihan Belum Dibayar!',
+                ]);
+            }
+
             return redirect('/');
         }else{
             return back()->withErrors([
