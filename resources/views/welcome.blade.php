@@ -84,7 +84,7 @@
             <!-- End Title -->
 
             <div class="max-w-3xl text-center mx-auto">
-                <p class="text-lg text-gray-400">Goldenfinger Wheels Indonesia menyediakan berbagai jenis ban sesuai
+                <p class="text-lg text-gray-400">Goldenfinger Wheels Indonesia menyediakan berbagai jenis <br> ban komersial truk sesuai
                     dengan kebutuhan Anda.</p>
             </div>
 
@@ -337,21 +337,20 @@
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="lg:w-3/4">
                     <h2 class="text-3xl text-white font-bold lg:text-4xl">
-                        Collaborative tools to design better user experience
+                        Mengapa kami adalah mitra bisnis yang tepat
                     </h2>
                     <p class="mt-3 text-white">
-                        We help businesses bring ideas to life in the digital world, by designing and implementing the
-                        technology tools that they need to win.
+                        Kami adalah perusahaan yang sudah berkecimpung di dunia ban kendaraan berat. Kami telah berpengalaman melayani client dari berbagai macam industri.
                     </p>
                     <p class="mt-5">
-                        <a class="inline-flex items-center gap-x-1 font-medium text-blue-500" href="#">
+                        {{-- <a class="inline-flex items-center gap-x-1 font-medium text-blue-500" href="#">
                             Contact sales to learn more
                             <svg class="flex-shrink-0 w-4 h-4 transition ease-in-out group-hover:translate-x-1"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
                                 <path d="m9 18 6-6-6-6" /></svg>
-                        </a>
+                        </a> --}}
                     </p>
                 </div>
                 <!-- End Col -->
@@ -370,11 +369,10 @@
                         </span>
                         <div class="ms-5 sm:ms-8">
                             <h3 class="text-base sm:text-lg font-semibold text-gray-200">
-                                Industry-leading documentation
+                                Produk Bervariasi
                             </h3>
                             <p class="mt-1 text-gray-400 ">
-                                Our documentation and extensive Client libraries contain everything a business needs to
-                                build a custom integration in a fraction of the time.
+                                Dengan variasi produk yang kami jual, kami yakin dapat memenuhi kebutuhan anda. Satu tempat untuk semua kebutuhan ban kendaraan berat anda.
                             </p>
                         </div>
                     </div>
@@ -393,11 +391,10 @@
                         </span>
                         <div class="ms-5 sm:ms-8">
                             <h3 class="text-base sm:text-lg font-semibold text-gray-200">
-                                Developer community support
+                                Tim Profesional
                             </h3>
                             <p class="mt-1 text-gray-400">
-                                We actively contribute to open-source projects—giving back to the community through
-                                development, patches, and sponsorships.
+                                Kami memiliki tim yang profesional dan berpengalaman di bidangnya. Tim kami siap membantu kebutuhan anda kapan saja dan dimana saja.
                             </p>
                         </div>
                     </div>
@@ -418,11 +415,10 @@
                         </span>
                         <div class="ms-5 sm:ms-8">
                             <h3 class="text-base sm:text-lg font-semibold text-gray-200">
-                                Simple and affordable
+                                Harga dan Kualitas
                             </h3>
                             <p class="mt-1 text-gray-400">
-                                From boarding passes to movie tickets, there's pretty much nothing you can't store with
-                                Preline.
+                                Produk yang kami jual telah teruji di lapangan dan digunakan banyak mitra. Kami menjunjung tinggi keseimbangan harga dan kualitas.
                             </p>
                         </div>
                     </div>
@@ -446,7 +442,9 @@
                         Wheels Indonesia</a>
                 </div>
                 <!-- End Col -->
-
+                <div class="mt-2">
+                    <p class="text-gray-500">Telp : 082157118887/08125309669 │ Email : pt.goldfingerwheelsindonesia@gmail.com</p>
+                </div>
                 <div class="mt-3">
                     <p class="text-gray-500">© Goldfinger Wheels Indonesia. All rights reserved.</p>
                 </div>
